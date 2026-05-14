@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>cuack</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=League+Gothic&display=swap');
+
+
+            *{ 
+                margin:0;
+                padding:0;
+            }
+
+            :root{
+                --fondo:#6500B3;
+                --figura:#009405;
+                --destaque:black;
+                --textos1: "League Gothic", sans-serif;
+                --textos2: "Jost", sans-serif;
+
+            }
+
+            body {
+                font-family: var(--textos2);
+                color: var(--figura);
+                background: var(--fondo);
+            }
+
+            h1 {
+                text-align: center;
+                font-family: var(--textos1);
+                font-size: calc(1rem + 2vw + 2vh);
+                margin: 2vw auto;
+            }
+
+            h2{
+                margin:3rem 0 1rem 0;
+                font-family: var(--textos1);
+            }
+
+            #escondido{
+                display: none;
+            }
+
+            div.contenedor{ 
+                width: calc(100% - 6%);
+                max-width: 600px;
+                margin: 5% auto;
+                padding: 3%;
+                background: white;
+                box-shadow: 0 0 3px gray;
+                border-radius: 10px;
+                /*text-align: center;*/
+            }
+                
+
+            ul { /* la coma es para que se aplique en esos dos elemetnos*/
+                list-style-position: inside;
+                list-style: none;
+                width: 100%;
+                margin: 1rem 0;
+                border-top: 3px solid var(--fondo)
+            }
+            ul li {
+                border-bottom:1px solid var(--fondo);
+                padding:.6rem 0;
+            }
+            ul li:last-child {
+                border-bottom: 3px solid var(--fondo);
+                
+            }
+            ul li a {
+                margin-right: 2%;
+                text-decoration: none;
+                color: var(--destaque);
+                transition: all ease 1s;
+            }
+            ul li a:hover {
+                letter-spacing: .1rem;
+                transition: all ease .5s;
+            }
+
+
+            /*figure svg use {
+                animation: nombre 2s infinite alternate;
+
+            }*/
+
+            /*figure svg use[href="#bien"] {
+                animation: nombre 8s infinite alternate;
+            }
+            figure svg use[href="#mal"] {
+                animation: nombre 3s infinite alternate;
+            }
+            
+            @keyframes nombre {
+                0%{
+                    fill:#6500B3;
+                    transform: rotate(359deg);
+                    transform-origin: center;
+                }
+                100%{
+                    fill: #009405;
+                    transform-origin: center;
+                }
+                
+            }*/
+
+            
+            #first {
+              display: block;
+            }
+
+            #second {
+              display: none;
+            }
+
+            @media screen and (min-width: 600px) {
+              #first {
+                display: none;
+              }
+
+              #second {
+                display: block;
+              }
+            }
+            .tiny {
+                width: 2rem;
+                height: auto;
+                border-radius: 50% 50%;
+                margin-right: 0.5rem;
+            }
+
+        </style>
+    </head>
+    <body>
+        <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" id="escondido">
+            <symbol id="bien" width="16" height="16" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+            </symbol>
+            <symbol id="mal" width="16" height="16" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M4.5 6h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1m5 0h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1m-5 4h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1"/>
+            </symbol>
+        </svg> -->
+
+        <div class="contenedor">
+            <h1>Aves acuáticas</h1>
+            <p>Chile, con su extensa costa y rica diversidad de ecosistemas hídricos, es hogar de una gran variedad de aves acuáticas. Estos animales han desarrollado adaptaciones únicas que les permiten sobrevivir y prosperar en ambientes de agua dulce o salada, desde lagos altiplánicos hasta costas del Pacífico. A continuación se muestran distintos tipos de aves acuáticas:</p>
+            
+            <h2>Podicipediformes</h2>
+                <p>Aves buceadoras adaptadas a la vida en lagos y lagunas, pequeñas y muy ágiles en el agua.</p>
+            
+                <ul id="tres"></ul>
+
+            <h2>Pelecaniformes</h2>
+                <p>Aves acuáticas de cuello largo y pico curvo, muy gregarias y bulliciosas, que se alimentan escarbando el suelo en busca de invertebrados cerca de cuerpos de agua.</p>
+            
+                <ul id="dos"></ul>
+
+            <h2>Charadriiformes</h2>
+                <p>Aves que habitan zonas de agua dulce o salada, caracterizadas por tener patas largas y picos agudos adaptados para buscar invertebrados en el barro y zonas húmedas.</p>
+            
+                <ul id="uno"></ul>
+
+        </div>
+        <script>
+            fetch("https://api.myjson.online/v1/records/b4cc6491-a885-4cf0-8760-c06ccd90e3ce")
+                .then((respuesta) => {
+                    if (!respuesta.ok) {
+                        throw new Error("Error HTTP: " + respuesta.status);
+                    }
+                    return respuesta.json();
+                })
+                .then((datos) => {
+                    var pajaretes = datos.data;
+                    console.log("Datos recibidos:", pajaretes);
+                    const primero = document.getElementById("uno");
+                    const segundo = document.getElementById("dos");
+                    const tercero = document.getElementById("tres");
+
+                    pajaretes.forEach((x) => {
+                        if (x.info.order.value.includes("Charadriiformes")) {
+                            primero.innerHTML += `<li><img src="${x.image.url}" class="tiny"/>${x.names.spanish}</li>`;
+                        }
+                        if (x.info.order.value.includes("Pelecaniformes")) {
+                            segundo.innerHTML += `<li><img src="${x.image.url}" class="tiny"/>${x.names.spanish}</li>`;
+                        }
+                        if (x.info.order.value.includes("Podicipediformes")) {
+                            tercero.innerHTML += `<li><img src="${x.image.url}" class="tiny"/>${x.names.spanish}</li>`;
+                        }
+
+                    });
+                })
+                .catch((error) => {
+                    console.error("Algo salió mal:", error);
+                });
+        </script>
+    </body>
+</html>
